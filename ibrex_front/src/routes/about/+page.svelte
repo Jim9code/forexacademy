@@ -1,20 +1,23 @@
 <script>
     import Card from '$lib/components/Card.svelte';
+    import { reveal } from '$lib/actions/reveal.js';
 </script>
 
 <div class="page-container">
-    <div class="header">
+    <div class="header" use:reveal>
         <h1>About <span class="text-gradient-gold">IBREX</span> Academy</h1>
         <p>Built by traders, for traders.</p>
     </div>
 
     <div class="about-grid">
         <div class="about-content">
-            <h2 class="text-gradient-gold">Our Philosophy</h2>
-            <p>At IBREX, we believe that consistent profitability in the forex market is achievable through structured education, disciplined risk management, and the right psychological approach.</p>
-            <p>We cut through the noise of 'get rich quick' schemes and focus on teaching genuine market mechanics, price action, and institutional concepts that work in real market conditions.</p>
+            <div use:reveal={{ delay: 100 }}>
+                <h2 class="text-gradient-gold">Our Philosophy</h2>
+                <p>At IBREX, we believe that consistent profitability in the forex market is achievable through structured education, disciplined risk management, and the right psychological approach.</p>
+                <p>We cut through the noise of 'get rich quick' schemes and focus on teaching genuine market mechanics, price action, and institutional concepts that work in real market conditions.</p>
+            </div>
             
-            <div class="stats-row">
+            <div class="stats-row" use:reveal={{ delay: 200 }}>
                 <div class="stat">
                     <span class="stat-number">10k+</span>
                     <span class="stat-label">Active Students</span>
@@ -29,21 +32,23 @@
                 </div>
             </div>
 
-            <h2 class="mt-4">Meet the Instructor</h2>
-            <Card padding="2rem" hoverEffect={false}>
-                <div class="instructor-profile">
-                    <div class="instructor-image"></div>
-                    <div class="instructor-details">
-                        <h3>Michael J.</h3>
-                        <span class="role text-gradient-gold">Lead Trader & Founder</span>
-                        <p>Michael has over 8 years of experience trading the foreign exchange and futures markets. Starting as a retail trader, he eventually transitioned to managing institutional capital.</p>
-                        <p>His trading style focuses heavily on Smart Money Concepts (SMC) and pure price action, eliminating the need for lagging indicators.</p>
+            <div use:reveal={{ delay: 300 }}>
+                <h2 class="mt-4">Meet the Instructor</h2>
+                <Card padding="2rem" hoverEffect={false}>
+                    <div class="instructor-profile">
+                        <div class="instructor-image"></div>
+                        <div class="instructor-details">
+                            <h3>Michael J.</h3>
+                            <span class="role text-gradient-gold">Lead Trader & Founder</span>
+                            <p>Michael has over 8 years of experience trading the foreign exchange and futures markets. Starting as a retail trader, he eventually transitioned to managing institutional capital.</p>
+                            <p>His trading style focuses heavily on Smart Money Concepts (SMC) and pure price action, eliminating the need for lagging indicators.</p>
+                        </div>
                     </div>
-                </div>
-            </Card>
+                </Card>
+            </div>
         </div>
         
-        <div class="timeline-column">
+        <div class="timeline-column" use:reveal={{ delay: 400 }}>
             <h2>The Journey</h2>
             <div class="timeline">
                 <div class="timeline-item">

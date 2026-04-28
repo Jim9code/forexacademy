@@ -1,6 +1,7 @@
 <script>
     import Card from '$lib/components/Card.svelte';
     import Button from '$lib/components/Button.svelte';
+    import { reveal } from '$lib/actions/reveal.js';
 
     let filter = $state('All'); // All, Beginner, Advanced
 
@@ -17,7 +18,7 @@
 </script>
 
 <div class="page-container">
-    <div class="header">
+    <div class="header" use:reveal>
         <h1>Academy <span class="text-gradient-gold">Courses</span></h1>
         <p>Master the markets with our structured curriculum.</p>
     </div>
@@ -29,20 +30,22 @@
     </div>
 
     <div class="grid">
-        {#each filteredCourses as course}
-            <Card padding="0" hoverEffect={true}>
-                <div class="course-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url({course.img})"></div>
-                <div class="course-info">
-                    <span class="badge {course.level.toLowerCase()}-badge">{course.level}</span>
-                    <h3>{course.title}</h3>
-                    <p>{course.desc}</p>
-                    <div class="action">
-                        <a href="/courses/{course.id}">
-                            <Button text="View Course" variant="outline" fullWidth={true} />
-                        </a>
+        {#each filteredCourses as course, i}
+            <div use:reveal={{ delay: i * 100 }}>
+                <Card padding="0" hoverEffect={true}>
+                    <div class="course-img" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url({course.img})"></div>
+                    <div class="course-info">
+                        <span class="badge {course.level.toLowerCase()}-badge">{course.level}</span>
+                        <h3>{course.title}</h3>
+                        <p>{course.desc}</p>
+                        <div class="action">
+                            <a href="/courses/{course.id}">
+                                <Button text="View Course" variant="outline" fullWidth={true} />
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </Card>
+                </Card>
+            </div>
         {/each}
     </div>
 </div>

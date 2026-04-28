@@ -2,6 +2,7 @@
     import Button from '$lib/components/Button.svelte';
     import Card from '$lib/components/Card.svelte';
     import CandlestickBg from '$lib/components/CandlestickBg.svelte';
+    import { reveal } from '$lib/actions/reveal.js';
 </script>
 
 <div class="home">
@@ -85,36 +86,42 @@
     <!-- Course Preview Section -->
     <section id="preview" class="section">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" use:reveal>
                 <h2>Featured <span class="text-gradient-gold">Courses</span></h2>
                 <p>Start your journey from beginner to advanced trader</p>
             </div>
             
             <div class="grid">
-                <Card padding="0" hoverEffect={true}>
-                    <div class="course-img beginner"></div>
-                    <div class="course-info">
-                        <span class="badge beginner-badge">Beginner</span>
-                        <h3>Forex Fundamentals</h3>
-                        <p>Learn the basics of currency pairs, pips, and market hours.</p>
-                    </div>
-                </Card>
-                <Card padding="0" hoverEffect={true}>
-                    <div class="course-img intermediate"></div>
-                    <div class="course-info">
-                        <span class="badge intermediate-badge">Intermediate</span>
-                        <h3>Price Action Mastery</h3>
-                        <p>Understand candlesticks, support/resistance, and chart patterns.</p>
-                    </div>
-                </Card>
-                <Card padding="0" hoverEffect={true}>
-                    <div class="course-img advanced"></div>
-                    <div class="course-info">
-                        <span class="badge advanced-badge">Advanced</span>
-                        <h3>Smart Money Concepts</h3>
-                        <p>Trade with the institutions: order blocks and liquidity voids.</p>
-                    </div>
-                </Card>
+                <div use:reveal={{ delay: 0 }}>
+                    <Card padding="0" hoverEffect={true}>
+                        <div class="course-img beginner"></div>
+                        <div class="course-info">
+                            <span class="badge beginner-badge">Beginner</span>
+                            <h3>Forex Fundamentals</h3>
+                            <p>Learn the basics of currency pairs, pips, and market hours.</p>
+                        </div>
+                    </Card>
+                </div>
+                <div use:reveal={{ delay: 100 }}>
+                    <Card padding="0" hoverEffect={true}>
+                        <div class="course-img intermediate"></div>
+                        <div class="course-info">
+                            <span class="badge intermediate-badge">Intermediate</span>
+                            <h3>Price Action Mastery</h3>
+                            <p>Understand candlesticks, support/resistance, and chart patterns.</p>
+                        </div>
+                    </Card>
+                </div>
+                <div use:reveal={{ delay: 200 }}>
+                    <Card padding="0" hoverEffect={true}>
+                        <div class="course-img advanced"></div>
+                        <div class="course-info">
+                            <span class="badge advanced-badge">Advanced</span>
+                            <h3>Smart Money Concepts</h3>
+                            <p>Trade with the institutions: order blocks and liquidity voids.</p>
+                        </div>
+                    </Card>
+                </div>
             </div>
         </div>
     </section>
@@ -122,31 +129,31 @@
     <!-- How It Works Section -->
     <section class="section alternate">
         <div class="container">
-            <div class="section-header">
+            <div class="section-header" use:reveal>
                 <h2>How It <span class="text-gradient-gold">Works</span></h2>
                 <p>Your path to consistent profitability</p>
             </div>
             
             <div class="steps">
-                <div class="step">
+                <div class="step" use:reveal={{ delay: 0 }}>
                     <div class="step-icon">1</div>
                     <h3>Sign Up</h3>
                     <p>Create your free account and access beginner material.</p>
                 </div>
-                <div class="step-line"></div>
-                <div class="step">
+                <div class="step-line" use:reveal={{ delay: 50 }}></div>
+                <div class="step" use:reveal={{ delay: 100 }}>
                     <div class="step-icon">2</div>
                     <h3>Learn</h3>
                     <p>Watch structured video lessons and complete quizzes.</p>
                 </div>
-                <div class="step-line"></div>
-                <div class="step">
+                <div class="step-line" use:reveal={{ delay: 150 }}></div>
+                <div class="step" use:reveal={{ delay: 200 }}>
                     <div class="step-icon">3</div>
                     <h3>Practice</h3>
                     <p>Apply strategies on a demo account with our guided setups.</p>
                 </div>
-                <div class="step-line"></div>
-                <div class="step">
+                <div class="step-line" use:reveal={{ delay: 250 }}></div>
+                <div class="step" use:reveal={{ delay: 300 }}>
                     <div class="step-icon">4</div>
                     <h3>Profit</h3>
                     <p>Execute live trades with confidence and risk management.</p>

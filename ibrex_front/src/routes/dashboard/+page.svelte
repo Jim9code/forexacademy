@@ -1,6 +1,7 @@
 <script>
     import Card from '$lib/components/Card.svelte';
     import Button from '$lib/components/Button.svelte';
+    import { reveal } from '$lib/actions/reveal.js';
 
     const user = {
         name: 'John Doe',
@@ -26,70 +27,76 @@
 </script>
 
 <div class="page-container">
-    <div class="welcome-section">
+    <div class="welcome-section" use:reveal>
         <h1>Welcome back, <span class="text-gradient-gold">{user.name}</span></h1>
         <p>Pick up where you left off and keep growing your skills.</p>
     </div>
 
     <div class="dashboard-grid">
         <div class="main-column">
-            <h2>Your <span class="text-gradient-gold">Learning Path</span></h2>
+            <h2 use:reveal={{ delay: 100 }}>Your <span class="text-gradient-gold">Learning Path</span></h2>
             
             <div class="courses-list">
-                {#each enrolledCourses as course}
-                    <Card padding="1.5rem" hoverEffect={false}>
-                        <div class="course-progress-card">
-                            <div class="course-thumb" style="background-image: url({course.img})"></div>
-                            <div class="course-details">
-                                <h3>{course.title}</h3>
-                                <p class="next-lesson">Next: {course.nextLesson}</p>
-                                
-                                <div class="progress-container">
-                                    <div class="progress-info">
-                                        <span>Progress</span>
-                                        <span>{course.progress}%</span>
+                {#each enrolledCourses as course, i}
+                    <div use:reveal={{ delay: 200 + (i * 100) }}>
+                        <Card padding="1.5rem" hoverEffect={false}>
+                            <div class="course-progress-card">
+                                <div class="course-thumb" style="background-image: url({course.img})"></div>
+                                <div class="course-details">
+                                    <h3>{course.title}</h3>
+                                    <p class="next-lesson">Next: {course.nextLesson}</p>
+                                    
+                                    <div class="progress-container">
+                                        <div class="progress-info">
+                                            <span>Progress</span>
+                                            <span>{course.progress}%</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: {course.progress}%"></div>
+                                        </div>
                                     </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: {course.progress}%"></div>
+                                    
+                                    <div class="action-btn">
+                                        <a href="/player">
+                                            <Button text="Continue Learning" variant="primary" />
+                                        </a>
                                     </div>
-                                </div>
-                                
-                                <div class="action-btn">
-                                    <a href="/player">
-                                        <Button text="Continue Learning" variant="primary" />
-                                    </a>
                                 </div>
                             </div>
-                        </div>
-                    </Card>
+                        </Card>
+                    </div>
                 {/each}
             </div>
         </div>
         
         <div class="sidebar">
-            <Card padding="1.5rem" hoverEffect={false}>
-                <h3>Dashboard Menu</h3>
-                <ul class="nav-menu">
-                    <li><a href="/dashboard" class="active">My Learning</a></li>
-                    <li><a href="/courses">Browse Courses</a></li>
-                    <li><a href="/profile">Profile Settings</a></li>
-                    <li><a href="/">Log Out</a></li>
-                </ul>
-            </Card>
+            <div use:reveal={{ delay: 200 }}>
+                <Card padding="1.5rem" hoverEffect={false}>
+                    <h3>Dashboard Menu</h3>
+                    <ul class="nav-menu">
+                        <li><a href="/dashboard" class="active">My Learning</a></li>
+                        <li><a href="/courses">Browse Courses</a></li>
+                        <li><a href="/profile">Profile Settings</a></li>
+                        <li><a href="/">Log Out</a></li>
+                    </ul>
+                </Card>
+            </div>
 
-            <Card padding="1.5rem" hoverEffect={false}>
-                <h3>Trading Stats</h3>
-                <div class="stats-box">
-                    <div class="stat-item">
-                        <span class="stat-value">0</span>
-                        <span class="stat-label">Certificates</span>
+            <div use:reveal={{ delay: 300 }}>
+                <Card padding="1.5rem" hoverEffect={false}>
+                    <h3>Trading Stats</h3>
+                    <div class="stats-box">
+                        <div class="stat-item">
+                            <span class="stat-value">0</span>
+                            <span class="stat-label">Certificates</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value text-gradient-gold">12</span>
+                            <span class="stat-label">Hours Watched</span>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <span class="stat-value text-gradient-gold">12</span>
-                        <span class="stat-label">Hours Watched</span>
-                    </div>
-                </div>
-            </Card>
+                </Card>
+            </div>
         </div>
     </div>
 </div>
